@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KW Explore — Agreement & E-Sign</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <div class="bar">
+      <div class="brand">KW Explore</div>
+      <div class="sub">Agreement • Read → Initial → Sign</div>
+    </div>
+
+    <section class="section">
+      <h3>1) Read the Agreement</h3>
+      <p>Place your contract PDF in <code>assets/contract.pdf</code> to show it here.</p>
+      <div class="contract"><iframe class="viewer" src="assets/contract.pdf#toolbar=0&navpanes=0&zoom=page-fit"></iframe></div>
+      <div class="row" style="margin-top:10px">
+        <input id="readAck" type="checkbox">
+        <label for="readAck">I confirm that I have read and understood the entire agreement above.</label>
+      </div>
+    </section>
+
+    <form id="joinForm" class="section">
+      <h3>2) Your Details</h3>
+      <div class="grid">
+        <div><label>First Name <span class="req">*</span></label><input name="firstName" required></div>
+        <div><label>Last Name <span class="req">*</span></label><input name="lastName" required></div>
+        <div><label>Preferred Name</label><input name="preferredName"></div>
+        <div><label>Email <span class="req">*</span></label><input type="email" name="email" required></div>
+        <div><label>Contact Number <span class="req">*</span></label><input type="tel" name="mobile" required placeholder="+27..."></div>
+        <div class="full"><label>Street Address <span class="req">*</span></label><textarea name="street" rows="2" required></textarea></div>
+        <div class="full"><label>Postal Address <span class="req">*</span></label><textarea name="postal" rows="2" required></textarea></div>
+        <div><label>ID Number</label><input name="idNumber"></div>
+        <div><label>Date of Birth</label><input type="date" name="dob"></div>
+        <div><label>KW Sponsor Name and Surname <span class="req">*</span></label><input name="recruiter" required></div>
+      </div>
+
+      <h3 style="margin-top:18px">3) FFC, Banking & Dates</h3>
+      <div class="grid">
+        <div><label>Do you hold a FFC?</label><select name="ffcHold"><option value="">Select…</option><option>Yes</option><option>No</option></select></div>
+        <div><label>Year of first FFC</label><input type="number" name="ffcYear" min="1900" max="2100"></div>
+        <div><label>Qualification Status (FFC)</label><select name="ffcStatus"><option value="">Select…</option><option>Candidate</option><option>Full Status</option><option>Principle Status</option></select></div>
+        <div><label>FFC Number</label><input name="ffcNumber"></div>
+        <div class="full"><label>To which Company is FFC linked?</label><input name="ffcCompany"></div>
+        <div><label>Bank Account Name</label><input name="bankHolder"></div>
+        <div><label>Bank</label><input name="bankName"></div>
+        <div><label>Type of Account</label><select name="bankType"><option value="">Select…</option><option>Cheque</option><option>Savings</option><option>Transmission</option></select></div>
+        <div><label>Branch Code</label><input name="bankBranch"></div>
+        <div><label>Branch Name</label><input name="bankBranchName"></div>
+        <div><label>Account Number</label><input inputmode="numeric" name="bankNumber"></div>
+        <div class="full"><label>Income Tax Number</label><input name="taxNumber"></div>
+        <div><label>Main Farming Area <span class="req">*</span></label><input name="mainFarmingArea" required></div>
+        <div><label>Start Date <span class="req">*</span></label><input type="date" name="startDate" required></div>
+        <div><label>Anniversary Date (auto)</label><input name="anniversaryDateDisplay" id="annDisplay" readonly></div>
+        <div><label>Associate Initials (typed) <span class="req">*</span></label><input name="initials" required maxlength="6"></div>
+      </div>
+
+      <h3 style="margin-top:18px">4) Initial here (small)</h3>
+      <div class="sigPad small"><canvas id="initialsCanvas"></canvas><div class="sigBtns">
+        <button type="button" id="clearInitials">Clear</button></div></div>
+
+      <h3 style="margin-top:18px">5) Sign in full</h3>
+      <div class="sigPad"><canvas id="signatureCanvas"></canvas><div class="sigBtns">
+        <button type="button" id="clearSignature">Clear</button></div></div>
+
+      <div class="row" style="margin-top:14px">
+        <input id="agree" name="agree" type="checkbox" required>
+        <label for="agree">I agree that this constitutes my electronic signature and that I am entering into the agreement above.</label>
+      </div>
+
+      <div class="actions">
+        <button type="reset" class="btn ghost">Reset</button>
+        <button class="btn primary" id="submitBtn">Submit</button>
+      </div>
+      <div id="status" class="hide" style="margin-top:16px;"></div>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+window.KWX_CONFIG={API_ENDPOINT:'https://script.google.com/macros/s/AKfycbx8CEuzF7rTylBQxFhUgmD6-Y8ZVQgzrmbASOuGXl3NWyf4MRfCvPi0vOxbDE6996HSug/exec',CORS_MODE:'cors'};
