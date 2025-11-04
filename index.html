@@ -11,14 +11,22 @@
 <body>
   <div class="wrap">
     <div class="bar">
+      <img src="assets/logo.png" alt="KW Explore" class="logo">
       <div class="brand">KW Explore</div>
       <div class="sub">Agreement • Read → Initial → Sign</div>
     </div>
 
     <section class="section">
       <h3>1) Read the Agreement</h3>
-      <p>Place your contract PDF in <code>assets/contract.pdf</code> to show it here.</p>
-      <div class="contract"><iframe class="viewer" src="assets/contract.pdf#toolbar=0&navpanes=0&zoom=page-fit"></iframe></div>
+      <div class="contract">
+        <object class="viewer" data="./assets/contract.pdf#toolbar=0&navpanes=0&zoom=page-fit" type="application/pdf">
+          <iframe class="viewer" src="./assets/contract.pdf#toolbar=0&navpanes=0&zoom=page-fit"></iframe>
+          <div class="pdf-fallback">
+            Can't display the PDF inline.
+            <a href="./assets/contract.pdf" target="_blank" rel="noopener">Open the agreement</a>.
+          </div>
+        </object>
+      </div>
       <div class="row" style="margin-top:10px">
         <input id="readAck" type="checkbox">
         <label for="readAck">I confirm that I have read and understood the entire agreement above.</label>

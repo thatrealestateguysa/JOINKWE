@@ -37,8 +37,7 @@
     try{
       const res = await fetch(window.KWX_CONFIG.API_ENDPOINT, {
         method:'POST',
-        mode: window.KWX_CONFIG.CORS_MODE || 'cors',
-        headers: {'Content-Type':'application/json'},
+        headers: {'Content-Type':'text/plain;charset=UTF-8'},
         body: JSON.stringify(data)
       });
 
@@ -52,8 +51,8 @@
             +(out.sheetUrl?' · <a target="_blank" href="'+out.sheetUrl+'">Responses</a>':'');
         form.reset(); annDisplay.value=''; initialsPad.clear(); signaturePad.clear();
       }else{
-        statusEl.className='note';
-        statusEl.textContent='Submitted. If you did not receive an email, please contact the office. (Tip: enable CORS + JSON response on backend.)';
+        statusEl.className='success';
+        statusEl.innerHTML='<b>Submitted!</b> Please check your email for the PDF link.';
       }
     }catch(err){
       statusEl.className='note';
