@@ -29,3 +29,4 @@ input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0
 .sigPad.small canvas{height:80px}
 .sigBtns{display:flex;gap:8px;margin-top:6px}
 .sigBtns button{border:1px solid #e5e7eb;background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+.pdf-fallback{padding:12px}

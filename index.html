@@ -48,7 +48,37 @@
         <div><label>KW Sponsor Name and Surname <span class="req">*</span></label><input name="recruiter" required></div>
       </div>
 
-      <h3 style="margin-top:18px">3) FFC, Banking & Dates</h3>
+      <h3 style="margin-top:18px">3) Marital, Spouse & Emergency</h3>
+      <div class="grid">
+        <div><label>Marital Status <span class="req">*</span></label>
+          <select name="maritalStatus" required>
+            <option value="">Select…</option><option>Married</option><option>Single</option><option>Divorced</option><option>Widowed</option>
+          </select>
+        </div>
+        <div><label>Date of Marriage</label><input type="date" name="maritalDate"></div>
+        <div><label>Spouse Name</label><input name="spouseName"></div>
+        <div><label>Spouse Date of Birth</label><input type="date" name="spouseDob"></div>
+        <div><label>Spouse Contact Number</label><input type="tel" name="spouseContact"></div>
+        <div><label>Emergency Contact Name <span class="req">*</span></label><input name="emergencyName" required></div>
+        <div><label>Emergency Contact Number <span class="req">*</span></label><input type="tel" name="emergencyNumber" required></div>
+        <div><label>Emergency Contact Relation <span class="req">*</span></label><input name="emergencyRelation" required></div>
+      </div>
+
+      <h3 style="margin-top:18px">4) Citizenship & Work Permit</h3>
+      <div class="grid">
+        <div><label>South African Citizen? <span class="req">*</span></label>
+          <select name="citizenSA" id="citizenSA" required><option value="">Select…</option><option>Yes</option><option>No</option></select>
+        </div>
+        <div id="permitValidWrap"><label>Valid Work Permit?</label>
+          <select name="workPermitValid" id="workPermitValid"><option value="">Select…</option><option>Yes</option><option>No</option></select>
+        </div>
+        <div id="permitExpiryWrap"><label>Work Permit Expiry Date</label><input type="date" name="workPermitExpiry" id="workPermitExpiry"></div>
+        <div><label>Asylum/Refugee</label>
+          <select name="asylumType"><option>NA</option><option>Asylum Seeker</option><option>Refugee</option></select>
+        </div>
+      </div>
+
+      <h3 style="margin-top:18px">5) FFC, Banking & Dates</h3>
       <div class="grid">
         <div><label>Do you hold a FFC?</label><select name="ffcHold"><option value="">Select…</option><option>Yes</option><option>No</option></select></div>
         <div><label>Year of first FFC</label><input type="number" name="ffcYear" min="1900" max="2100"></div>
@@ -63,16 +93,22 @@
         <div><label>Account Number</label><input inputmode="numeric" name="bankNumber"></div>
         <div class="full"><label>Income Tax Number</label><input name="taxNumber"></div>
         <div><label>Main Farming Area <span class="req">*</span></label><input name="mainFarmingArea" required></div>
-        <div><label>Start Date <span class="req">*</span></label><input type="date" name="startDate" required></div>
+        <div><label>Start Date <span class="req">*</span></label><input type="date" name="startDate" id="startDate" required></div>
         <div><label>Anniversary Date (auto)</label><input name="anniversaryDateDisplay" id="annDisplay" readonly></div>
         <div><label>Associate Initials (typed) <span class="req">*</span></label><input name="initials" required maxlength="6"></div>
       </div>
 
-      <h3 style="margin-top:18px">4) Initial here (small)</h3>
+      <h3 style="margin-top:18px">6) Signing Details</h3>
+      <div class="grid">
+        <div><label>Place Signed</label><input name="placeSigned" placeholder="City / Office"></div>
+        <div><label>Signed Date</label><input type="date" name="signedDate"></div>
+      </div>
+
+      <h3 style="margin-top:18px">7) Initial here (small)</h3>
       <div class="sigPad small"><canvas id="initialsCanvas"></canvas><div class="sigBtns">
         <button type="button" id="clearInitials">Clear</button></div></div>
 
-      <h3 style="margin-top:18px">5) Sign in full</h3>
+      <h3 style="margin-top:18px">8) Sign in full</h3>
       <div class="sigPad"><canvas id="signatureCanvas"></canvas><div class="sigBtns">
         <button type="button" id="clearSignature">Clear</button></div></div>
 

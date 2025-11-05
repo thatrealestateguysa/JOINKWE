@@ -1,8 +1,8 @@
 (function(){
   const $ = s => document.querySelector(s);
 
-  function makePad(id){
-    const c=$(id),x=c.getContext('2d'),D=Math.max(1,window.devicePixelRatio||1);
+  function makePad(sel){
+    const c=$(sel),x=c.getContext('2d'),D=Math.max(1,window.devicePixelRatio||1);
     function rs(){const r=c.getBoundingClientRect();c.width=Math.round(r.width*D);c.height=Math.round(r.height*D);x.setTransform(D,0,0,D,0,0);x.lineCap='round';x.lineJoin='round';x.lineWidth=2;x.strokeStyle='#111'}
     rs(); new ResizeObserver(rs).observe(c);
     let d=false,drawn=false,last=null;
@@ -19,9 +19,38 @@
   $('#clearInitials').onclick=()=>initialsPad.clear();
   $('#clearSignature').onclick=()=>signaturePad.clear();
 
-  const startInput=document.querySelector('input[name="startDate"]'), annDisplay=document.getElementById('annDisplay');
-  function ann(d){if(!d)return'';const dt=new Date(d);if(isNaN(dt))return'';const a=new Date(dt.getFullYear()+1,dt.getMonth(),dt.getDate());const z=n=>String(n).padStart(2,'0');return a.getFullYear()+'-'+z(a.getMonth()+1)+'-'+z(a.getDate())}
-  startInput.addEventListener('change',()=>{annDisplay.value=ann(startInput.value)});
+  // Anniversary auto-calc
+  const startInput=$('#startDate'), annDisplay=$('#annDisplay');
+  function calcAnn(d){if(!d)return'';const dt=new Date(d);if(isNaN(dt))return'';const a=new Date(dt.getFullYear()+1,dt.getMonth(),dt.getDate());const z=n=>String(n).padStart(2,'0');return a.getFullYear()+'-'+z(a.getMonth()+1)+'-'+z(a.getDate())}
+  if(startInput){ startInput.addEventListener('change',()=>{ annDisplay.value=calcAnn(startInput.value); }); }
+
+  // Conditional UI for Citizen / Work Permit
+  const citizen = $('#citizenSA');
+  const permitValidWrap = $('#permitValidWrap');
+  const permitExpiryWrap = $('#permitExpiryWrap');
+  const permitValid = $('#workPermitValid');
+  const permitExpiry = $('#workPermitExpiry');
+
+  function updatePermitUI(){
+    const isCitizenNo = (citizen && citizen.value && citizen.value.toLowerCase().startsWith('n'));
+    permitValidWrap.style.display = isCitizenNo ? '' : 'none';
+    permitExpiryWrap.style.display = (isCitizenNo && permitValid && permitValid.value.toLowerCase().startsWith('y')) ? '' : 'none';
+    if(isCitizenNo){
+      permitValid.setAttribute('required','required');
+      if(permitValid.value.toLowerCase().startsWith('y')){
+        permitExpiry.setAttribute('required','required');
+      }else{
+        permitExpiry.removeAttribute('required');
+        permitExpiry.value = '';
+      }
+    }else{
+      permitValid.removeAttribute('required'); permitValid.value='';
+      permitExpiry.removeAttribute('required'); permitExpiry.value='';
+    }
+  }
+  if(citizen){ citizen.addEventListener('change', updatePermitUI); }
+  if(permitValid){ permitValid.addEventListener('change', updatePermitUI); }
+  updatePermitUI();
 
   const form=$('#joinForm'), statusEl=$('#status'), btn=$('#submitBtn');
   form.addEventListener('submit',async e=>{
@@ -30,7 +59,11 @@
     const i=initialsPad.toDataURL(), s=signaturePad.toDataURL();
     if(!i){alert('Please draw your initials.');return}
     if(!s){alert('Please provide your full signature.');return}
-    statusEl.className='success';statusEl.textContent='Submitting… please wait.';statusEl.classList.remove('hide');btn.disabled=true;
+
+    statusEl.className='success';
+    statusEl.textContent='Submitting… please wait.';
+    statusEl.classList.remove('hide'); btn.disabled=true;
+
     const data=Object.fromEntries(new FormData(form).entries());
     data.agree=!!data.agree; data.readAck=true; data.initialsDataUrl=i; data.signatureDataUrl=s;
 
@@ -40,9 +73,8 @@
         headers: {'Content-Type':'text/plain;charset=UTF-8'},
         body: JSON.stringify(data)
       });
-
       let out=null;
-      try{ out = await res.json(); }catch(_){ out=null; }
+      try{ out=await res.json(); }catch(_){ out=null; }
 
       if(out && out.ok){
         statusEl.className='success';
@@ -50,9 +82,10 @@
             +(out.folderUrl?' · <a target="_blank" href="'+out.folderUrl+'">Folder</a>':'')
             +(out.sheetUrl?' · <a target="_blank" href="'+out.sheetUrl+'">Responses</a>':'');
         form.reset(); annDisplay.value=''; initialsPad.clear(); signaturePad.clear();
+        updatePermitUI();
       }else{
         statusEl.className='success';
-        statusEl.innerHTML='<b>Submitted!</b> Please check your email for the PDF link.';
+        statusEl.innerHTML='<b>Submitted!</b> If a PDF link is not shown, please check your email for the document.';
       }
     }catch(err){
       statusEl.className='note';

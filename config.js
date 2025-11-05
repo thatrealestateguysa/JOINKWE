@@ -1,3 +1,3 @@
 window.KWX_CONFIG = {
-  API_ENDPOINT: 'https://script.google.com/macros/s/AKfycbwnkXKdp2SV1qqyLiypgpDSVhr5exJ7S4b2H3Uz_fZJ5L5d8OaNsbuOHGSlHRysz8fycw/exec'
+  API_ENDPOINT: 'https://script.google.com/macros/s/AKfycbzASeIT0m-L04odltNf4kepiO8MLqbaYP9BR9H89WCkxaCNHQ_p0U10roxmiBf6Nm2i0w/exec'
 };
