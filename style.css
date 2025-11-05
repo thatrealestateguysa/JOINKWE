@@ -1,32 +1,84 @@
-:root{--brand:#D40511;--dark:#333;--muted:#6b7280;--bg:#f7f7f7}
+:root{
+  --brand:#D40511;
+  --bg:#0b0c10;          /* page background */
+  --panel:#151822;       /* card/panel */
+  --text:#f5f7fa;        /* primary text */
+  --muted:#a8b3cf;       /* secondary text */
+  --line:#242938;        /* borders */
+}
 *{box-sizing:border-box}
-body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--dark)}
-.wrap{max-width:1020px;margin:28px auto;background:#fff;border:1px solid #eee;border-radius:14px;overflow:hidden}
-.bar{background:var(--brand);color:#fff;padding:16px 22px;display:flex;gap:12px;align-items:center}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+a{color:#fff;text-underline-offset:2px}
+.wrap{
+  max-width:1020px;
+  margin:28px auto;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+}
+.bar{
+  background:var(--brand);
+  color:#fff;
+  padding:16px 22px;
+  display:flex;gap:12px;align-items:center
+}
 .brand{font-weight:800;letter-spacing:.4px}
 .logo{height:28px}
-.sub{opacity:.95;font-size:12px;margin-left:auto}
-.section{padding:18px 22px;border-top:1px solid #f1f1f1}
-h3{margin:0 0 10px}
-.contract{border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;background:#fafafa}
-.viewer{width:100%;height:700px;border:0;display:block;background:#fff}
+.sub{opacity:.95;font-size:12px;margin-left:auto;color:#fff}
+.section{padding:18px 22px;border-top:1px solid var(--line)}
+h3{margin:0 0 10px;color:#fff}
+.contract{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#0e1116}
+.viewer{width:100%;height:700px;border:0;display:block;background:#0e1116}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .full{grid-column:1/-1}
 label{font-size:13px;color:var(--muted);display:block;margin:8px 0 6px}
-input,select,textarea{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:10px;font-size:14px;outline:0;background:#fff;transition:box-shadow .15s,border-color .15s}
-input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(212,5,17,.12)}
+input,select,textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid #2a3040;
+  border-radius:10px;
+  font-size:14px;
+  outline:0;
+  background:#0f1320;
+  color:var(--text);
+  transition:box-shadow .15s,border-color .15s, background .15s;
+}
+input::placeholder,textarea::placeholder{color:#7c869b}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--brand);
+  box-shadow:0 0 0 3px rgba(212,5,17,.25)
+}
 .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .actions{display:flex;gap:12px;justify-content:flex-end;margin-top:18px}
 .btn{border:none;border-radius:10px;padding:12px 16px;font-weight:700;cursor:pointer}
 .primary{background:var(--brand);color:#fff}
-.ghost{background:#fff;border:1px solid #e5e7eb}
-.success{padding:14px;background:#f0fdf4;border:1px solid #dcfce7;color:#166534;border-radius:10px}
-.note{background:#fff7f7;border:1px solid #ffe1e1;color:#7a1a1a;padding:10px 12px;border-radius:10px}
+.ghost{background:transparent;border:1px solid #3a425a;color:#fff}
+.success{
+  padding:14px;
+  background:#0f1a12;
+  border:1px solid #1f3b2a;
+  color:#9ae6b4;
+  border-radius:10px
+}
+.note{
+  background:#2a0d0d;
+  border:1px solid #5a1a1a;
+  color:#fca5a5;
+  padding:10px 12px;
+  border-radius:10px
+}
 .hide{display:none}
-.req{color:var(--brand);font-weight:700}
-.sigPad{border:1px dashed #c7c7c7;background:#fff;border-radius:10px;padding:10px}
-.sigPad canvas{width:100%;height:150px;display:block;background:#fff;border-radius:6px;border:1px solid #eee;touch-action:none}
+.req{color:#ff6b6b;font-weight:700}
+.sigPad{border:1px dashed #3a425a;background:#0f1320;border-radius:10px;padding:10px}
+.sigPad canvas{width:100%;height:150px;display:block;background:#0f1320;border-radius:6px;border:1px solid #2a3040;touch-action:none}
 .sigPad.small canvas{height:80px}
 .sigBtns{display:flex;gap:8px;margin-top:6px}
-.sigBtns button{border:1px solid #e5e7eb;background:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
-.pdf-fallback{padding:12px}
+.sigBtns button{border:1px solid #3a425a;background:#141a26;color:#fff;border-radius:8px;padding:6px 10px;cursor:pointer}
+.pdf-fallback{padding:12px;color:var(--muted)}
