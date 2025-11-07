@@ -80,11 +80,15 @@
 
       <h3 style="margin-top:18px">5) FFC, Banking & Dates</h3>
       <div class="grid">
-        <div><label>Do you hold a FFC?</label><select name="ffcHold"><option value="">Select…</option><option>Yes</option><option>No</option></select></div>
-        <div><label>Year of first FFC</label><input type="number" name="ffcYear" min="1900" max="2100"></div>
-        <div><label>Qualification Status (FFC)</label><select name="ffcStatus"><option value="">Select…</option><option>Candidate</option><option>Full Status</option><option>Principle Status</option></select></div>
-        <div><label>FFC Number</label><input name="ffcNumber"></div>
-        <div class="full"><label>To which Company is FFC linked?</label><input name="ffcCompany"></div>
+        <div><label>Do you hold a FFC?</label><select name="ffcHold" id="ffcHold"><option value="">Select…</option><option>Yes</option><option>No</option></select></div>
+
+        <div id="ffcFields">
+          <div><label>Year of first FFC</label><input type="number" name="ffcYear" min="1900" max="2100"></div>
+          <div><label>Qualification Status (FFC)</label><select name="ffcStatus"><option value="">Select…</option><option>Candidate</option><option>Full Status</option><option>Principle Status</option></select></div>
+          <div><label>FFC Number</label><input name="ffcNumber"></div>
+          <div class="full"><label>To which Company is FFC linked?</label><input name="ffcCompany"></div>
+        </div>
+
         <div><label>Bank Account Name</label><input name="bankHolder"></div>
         <div><label>Bank</label><input name="bankName"></div>
         <div><label>Type of Account</label><select name="bankType"><option value="">Select…</option><option>Cheque</option><option>Savings</option><option>Transmission</option></select></div>
@@ -105,12 +109,22 @@
       </div>
 
       <h3 style="margin-top:18px">7) Initial here (small)</h3>
-      <div class="sigPad small"><canvas id="initialsCanvas"></canvas><div class="sigBtns">
-        <button type="button" id="clearInitials">Clear</button></div></div>
+      <div class="sigPad small">
+        <canvas id="initialsCanvas"></canvas>
+        <div class="sigBtns">
+          <button type="button" id="undoInitials">Undo</button>
+          <button type="button" id="clearInitials">Clear</button>
+        </div>
+      </div>
 
       <h3 style="margin-top:18px">8) Sign in full</h3>
-      <div class="sigPad"><canvas id="signatureCanvas"></canvas><div class="sigBtns">
-        <button type="button" id="clearSignature">Clear</button></div></div>
+      <div class="sigPad">
+        <canvas id="signatureCanvas"></canvas>
+        <div class="sigBtns">
+          <button type="button" id="undoSignature">Undo</button>
+          <button type="button" id="clearSignature">Clear</button>
+        </div>
+      </div>
 
       <div class="row" style="margin-top:14px">
         <input id="agree" name="agree" type="checkbox" required>
